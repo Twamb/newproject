@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEATHER APP</title>
+    <link rel="stylesheet" type="text/css" href="path/newfolder.css">
+    <style>
+        td {
+            padding: 100px;
+        }
+
+        * {
+            background-color: rgb(32, 47, 99);
+            color: #fff;
+        }
+
+        .bulletless {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .bulletless li {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .container {
+        
+            background-color: grey;
+            padding: 1px;
+            border-radius: 5px;
+        }
+
+        .container:hover {
+            background-color: #fff;
+        }
+
+        button {
+            padding: 12px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="container">
+        <div class="weather-app">
+          <form class="search-form" id="search-form">
+            <div class="row">
+              <div class="col-9">
+                <input
+                  type="search"
+                  placeholder="Type a city.."
+                  autofocus="on"
+                  autocomplete="off"
+                  id="city-input"
+                  class="form-control shadow-sm"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="form-control btn btn-primary shadow-sm"
+                />
+              </div>
+            </div>
+          </form>
+          <h1 id="city">
+            Blantyre, Malawi
+          </h1>
+          <ul>
+            <li id="date"></li>
+            <li>
+              Partly Cloudy
+            </li>
+          </ul>
+          <div class="row">
+            <div class="col-6">
+              <div class="clearfix">
+                <img
+                  src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                  alt="Cloudy icon"
+                  class="weather-icon float-left"
+                />
+                <div class="float-left">
+                  <span class="temperature" id="temperature">24</span
+                  ><span class="units">
+                    <a href="#" id="celsius-link">°C</a> |
+                    <a href="#" id="fahrenheit-link">°F</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <ul>
+                <li>
+                  Precipitation: 0%
+                </li>
+                <li>
+                  Humidity: 64%
+                </li>
+                <li>
+                  Wind: 7 km/h
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    </body>
+  </html>
+  
+      <script>
+
+function formatDate(date) {
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let dayIndex = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let day = days[dayIndex];
+
+  return `${day} ${hours}:${minutes}`;
+}
+
+function search(event) {
+  event.preventDefault();
+  let cityElement = document.querySelector("#city");
+  let cityInput = document.querySelector("#city-input");
+  cityElement.innerHTML = cityInput.value;
+}
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = 66;
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = 19;
+}
+
+
+let dateElement = document.querySelector("#date");
+let currentTime = new Date();
+dateElement.innerHTML = formatDate(currentTime);
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", search);
+
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertToCelsius);
+
+
+            </script>
+        
+    
+</body>
+
+</html>
